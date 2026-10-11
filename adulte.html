@@ -4,90 +4,221 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Espace adulte</title>
+<title>Espace adulte – Cahiers d'activités</title>
 <style>
-:root{--ink:#1d1a24;--muted:#6c6677;--line:#d9d4e0;--page:#f3eff7;--paper:#fff;--purple:#6b0f5e;--ok:#1f9d55;--ko:#d9432f}
-@media (prefers-color-scheme: dark){:root{--ink:#f1ecf7;--muted:#b1a9bd;--line:#443c52;--page:#16121c;--paper:#221d2b;--purple:#e39ad8}}
+:root{--ink:#1d1a24;--muted:#6c6677;--line:#d9d4e0;--page:#f3eff7;--paper:#fff;--purple:#6b0f5e;--violet:#7b2cbf;--ok:#1f9d55;--ko:#d9432f;--soft:#f5edff}
+@media (prefers-color-scheme: dark){:root{--ink:#f1ecf7;--muted:#b1a9bd;--line:#443c52;--page:#16121c;--paper:#221d2b;--purple:#e39ad8;--violet:#c79bf2;--soft:#2e2440}}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--page);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Verdana,sans-serif;padding:max(20px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom))}
-main{max-width:640px;margin:0 auto}
+body{background:var(--page);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Verdana,sans-serif;padding:max(20px,env(safe-area-inset-top)) 14px max(30px,env(safe-area-inset-bottom))}
+main{max-width:720px;margin:0 auto}
 h1{color:var(--purple);font-size:28px;margin:0 0 4px}
-.sub{color:var(--muted);margin:0 0 20px;font-size:14px}
+.sub{color:var(--muted);margin:0 0 18px;font-size:14px}
 .card{background:var(--paper);border-radius:18px;padding:18px 16px;box-shadow:0 6px 20px rgba(40,10,60,.08);margin-bottom:16px}
-.card h2{font-size:18px;margin:0 0 10px}
+.card h2{font-size:19px;margin:0 0 12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+label.f{display:block;font-size:14px;color:var(--muted);margin-top:4px}
 input,select{width:100%;font-size:17px;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);margin:4px 0 10px}
-button{font-size:16px;font-weight:700;padding:11px 16px;border:0;border-radius:12px;background:var(--purple);color:#fff;cursor:pointer}
-button.alt{background:none;color:var(--muted);border:2px solid var(--line)}
-.msg{min-height:1.3em;font-size:15px;margin:8px 0 0}
+input:focus,select:focus{outline:none;border-color:var(--violet)}
+button,.fbtn{font:700 16px inherit;font-family:inherit;padding:11px 16px;border:0;border-radius:12px;background:var(--purple);color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+@media (prefers-color-scheme: dark){button,.fbtn{color:#16121c}}
+button:disabled{opacity:.55;cursor:default}
+button.alt,.fbtn.alt{background:none;color:var(--ink);border:2px solid var(--line)}
+button.sm,.fbtn.sm{font-size:14px;padding:8px 11px;border-radius:10px}
+button.danger{background:var(--ko);color:#fff;border:0}
+.msg{min-height:1.3em;font-size:15px;margin:8px 0 0;line-height:1.4}
 .msg.ok{color:var(--ok)}.msg.ko{color:var(--ko)}
-.new{font-size:24px;font-weight:800;letter-spacing:.12em;color:var(--ok)}
-table{width:100%;border-collapse:collapse;font-size:15px}
-th,td{text-align:left;padding:8px 4px;border-bottom:1px solid var(--line)}
-th{color:var(--muted);font-weight:400;font-size:13px}
-td.c{font-weight:700;letter-spacing:.08em;white-space:nowrap}
+.newcode{margin-top:12px;padding:14px;border-radius:14px;background:var(--soft);text-align:center}
+.newcode b{display:block;font-size:30px;letter-spacing:.14em;color:var(--violet);margin:4px 0}
+.kids{display:flex;flex-direction:column;gap:12px}
+.kid{border:2px solid var(--line);border-radius:16px;padding:12px 14px}
+.kid .h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.kid .nm{font-size:19px;font-weight:800}
+.kid .cd{font-weight:800;letter-spacing:.1em;color:var(--violet);font-size:16px}
+.kid .meta{color:var(--muted);font-size:14px;margin:4px 0 10px}
+.kid .acts{display:flex;flex-wrap:wrap;gap:8px}
+.kid .zone{margin-top:10px}
+.kid .zone:empty{display:none}
+.grp{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin:6px 0 -2px}
+.cah{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.cah:last-child{border-bottom:0}
+.cah .t{flex:1;min-width:0}
+.cah .t b{display:block}
+.cah .t small{color:var(--muted)}
+details.help{margin-top:6px}
+details.help summary{cursor:pointer;color:var(--violet);font-weight:700}
+details.help ol{padding-left:20px;line-height:1.5}
+.row2{display:flex;gap:10px;flex-wrap:wrap}
+.row2>*{flex:1 1 200px}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.spin{display:inline-block;width:16px;height:16px;border:3px solid var(--line);border-top-color:var(--violet);border-radius:50%;animation:s 1s linear infinite;vertical-align:-3px;margin-right:6px}
+@keyframes s{to{transform:rotate(360deg)}}
 [hidden]{display:none!important}
 </style>
 </head>
 <body>
 <main>
-<h1>Espace adulte</h1>
-<p class="sub">Version de test : création des codes et liste des élèves.</p>
+<div class="top"><div><h1>Espace adulte</h1><p class="sub">Cahiers d'activités en ligne</p></div><button class="alt sm" id="out" hidden>Fermer</button></div>
 
 <section class="card" id="login">
   <h2>Mot de passe adulte</h2>
-  <input type="password" id="pwd" autocomplete="current-password" aria-label="Mot de passe adulte">
-  <button id="ok">Ouvrir</button>
+  <form id="lf"><input type="password" id="pwd" autocomplete="current-password" aria-label="Mot de passe adulte">
+  <button type="submit" id="ok">Ouvrir</button></form>
   <p class="msg" id="lmsg" role="status"></p>
 </section>
 
 <section id="app" hidden>
   <div class="card">
+    <h2>Élèves <button class="alt sm" id="refresh">Actualiser</button></h2>
+    <div id="list"><span class="spin"></span>Chargement…</div>
+  </div>
+
+  <div class="card">
     <h2>Nouveau code élève</h2>
-    <label for="lab">Prénom (pour toi)</label>
-    <input id="lab" maxlength="60">
-    <label for="cah">Cahier</label>
-    <input id="cah" value="test" maxlength="60" autocapitalize="none" spellcheck="false">
+    <div class="row2">
+      <div><label class="f" for="lab">Prénom (pour toi)</label><input id="lab" maxlength="60"></div>
+      <div><label class="f" for="cah">Cahier</label><select id="cah"></select></div>
+    </div>
     <button id="mk">Créer le code</button>
     <p class="msg" id="nmsg" role="status"></p>
   </div>
+
   <div class="card">
-    <h2>Élèves</h2>
-    <div id="list">Chargement…</div>
-    <p style="margin:12px 0 0"><button class="alt" id="refresh">Actualiser</button> <button class="alt" id="out">Fermer</button></p>
+    <h2>Cahiers en ligne</h2>
+    <div id="cahs"></div>
+    <p style="margin:14px 0 0"><label class="fbtn" style="cursor:pointer">Déposer un ou plusieurs cahiers<input type="file" id="up" accept=".html,text/html" multiple hidden></label></p>
+    <p class="msg" id="umsg" role="status"></p>
+    <details class="help"><summary>Comment ça marche ?</summary>
+      <ol>
+        <li>Choisis les fichiers des cahiers <b>version en ligne</b> (ex. <i>mariam-periode1.html</i>).</li>
+        <li>Si un cahier du même nom est déjà en ligne, il est remplacé : le travail des élèves est gardé.</li>
+        <li>Pour changer de période, dépose le nouveau cahier, puis change le cahier de l'élève avec « Modifier » (il garde le même code).</li>
+      </ol>
+    </details>
   </div>
 </section>
 </main>
 <script>
-const SUPA={url:"https://jfmgsiuiynrklxydtcqb.supabase.co",key:"sb_publishable_X7PoFloBBAlIdHNnY09RXQ_dRRaZjES"};
-async function rpc(fn,args){
-  const r=await fetch(SUPA.url+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:SUPA.key,"Content-Type":"application/json"},body:JSON.stringify(args)});
-  const t=await r.text();let j=null;try{j=t?JSON.parse(t):null}catch(e){}
-  if(!r.ok){const e=new Error((j&&(j.message||j.hint))||("Erreur "+r.status));throw e}
-  return j}
-const $=id=>document.getElementById(id);
-const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const show=c=>(c||"").replace(/^([A-Z]+)(\d+)$/,"$1-$2");
-let pwd=null;
-async function load(){
-  const r=await rpc("cahier_liste",{p_mdp:pwd});
-  if(r===null){pwd=null;$("app").hidden=true;$("login").hidden=false;$("lmsg").className="msg ko";$("lmsg").textContent="Mot de passe incorrect.";return}
-  const el=r.eleves||[];
-  $("list").innerHTML=el.length?`<table><thead><tr><th>Code</th><th>Élève</th><th>Cahier</th><th>Finies</th></tr></thead><tbody>${el.map(e=>`<tr><td class="c">${esc(show(e.code))}</td><td>${esc(e.label||e.name)}</td><td>${esc(e.cahier)}</td><td>${Object.keys(e.done||{}).length}</td></tr>`).join("")}</tbody></table>`:"<p>Aucun élève pour l'instant.</p>";
+(function(){
+"use strict";
+var SUPA={url:"https://jfmgsiuiynrklxydtcqb.supabase.co",key:"sb_publishable_X7PoFloBBAlIdHNnY09RXQ_dRRaZjES"};
+var SK="cahier-adulte-mdp";
+function rpc(fn,args){
+  return fetch(SUPA.url+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:SUPA.key,"Content-Type":"application/json"},body:JSON.stringify(args)})
+   .then(function(r){return r.text().then(function(t){var j=null;try{j=t?JSON.parse(t):null}catch(e){}
+     if(!r.ok){var e=new Error((j&&(j.message||j.hint))||("erreur "+r.status));e.status=r.status;throw e}return j})})}
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function show(c){return (c||"").replace(/^([A-Z]+)(\d+)$/,"$1-$2")}
+function say(el,t,c){el.className="msg "+(c||"");el.textContent=t}
+function when(d){if(!d)return "";var x=new Date(d);if(isNaN(x))return "";return x.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" à "+x.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}
+var pwd=null,ELEVES=[],CAHIERS=[];
+try{pwd=sessionStorage.getItem(SK)}catch(e){}
+
+function titre(id){for(var i=0;i<CAHIERS.length;i++)if(CAHIERS[i].cahier===id)return CAHIERS[i].titre||id;return id}
+function enter(){$("login").hidden=true;$("app").hidden=false;$("out").hidden=false}
+function leave(m){pwd=null;try{sessionStorage.removeItem(SK)}catch(e){}$("app").hidden=true;$("out").hidden=true;$("login").hidden=false;if(m)say($("lmsg"),m,"ko");$("pwd").value="";}
+
+function load(){
+  return rpc("cahier_liste",{p_mdp:pwd}).then(function(r){
+    if(r===null){leave("Mot de passe incorrect.");return false}
+    ELEVES=r.eleves||[];CAHIERS=r.cahiers||[];enter();render();return true});
 }
-$("ok").onclick=async()=>{pwd=$("pwd").value;if(!pwd)return;$("lmsg").className="msg";$("lmsg").textContent="Vérification…";
-  try{const r=await rpc("cahier_liste",{p_mdp:pwd});
-    if(r===null){$("lmsg").className="msg ko";$("lmsg").textContent="Mot de passe incorrect.";pwd=null;return}
-    $("login").hidden=true;$("app").hidden=false;$("pwd").value="";await load()}
-  catch(e){$("lmsg").className="msg ko";$("lmsg").textContent=/Trop/.test(e.message)?e.message:"Impossible de joindre le serveur ("+e.message+")."}};
-$("pwd").addEventListener("keydown",e=>{if(e.key==="Enter")$("ok").click()});
-$("mk").onclick=async()=>{const cah=$("cah").value.trim().toLowerCase();if(!cah){$("nmsg").className="msg ko";$("nmsg").textContent="Indique un cahier.";return}
-  try{const c=await rpc("cahier_creer_code",{p_mdp:pwd,p_label:$("lab").value.trim(),p_cahier:cah});
-    if(!c){$("nmsg").className="msg ko";$("nmsg").textContent="Mot de passe refusé.";return}
-    $("nmsg").className="msg ok";$("nmsg").innerHTML=`Nouveau code : <span class="new">${esc(show(c))}</span>`;$("lab").value="";await load()}
-  catch(e){$("nmsg").className="msg ko";$("nmsg").textContent="Erreur : "+e.message}};
-$("refresh").onclick=()=>load().catch(()=>{});
-$("out").onclick=()=>{pwd=null;$("app").hidden=true;$("login").hidden=false;$("lmsg").textContent=""};
+function cahOptions(sel){
+  if(!CAHIERS.length)return '<option value="">(aucun cahier en ligne)</option>';
+  return CAHIERS.map(function(c){return '<option value="'+esc(c.cahier)+'"'+(c.cahier===sel?" selected":"")+'>'+esc(c.titre||c.cahier)+'</option>'}).join("");
+}
+function render(){
+  $("cah").innerHTML=cahOptions($("cah").value);
+  $("cahs").innerHTML=CAHIERS.length?CAHIERS.map(function(c){var n=ELEVES.filter(function(e){return e.cahier===c.cahier}).length;
+    return '<div class="cah"><div class="t"><b>'+esc(c.titre||c.cahier)+'</b><small>'+esc(c.cahier)+' · mis à jour le '+esc(when(c.updated_at))+' · '+n+' élève'+(n>1?"s":"")+'</small></div><button class="alt sm" data-ret="'+esc(c.cahier)+'">Retirer</button></div>'}).join("")
+    :'<p style="margin:0;color:var(--muted)">Aucun cahier en ligne pour l\'instant.</p>';
+  if(!ELEVES.length){$("list").innerHTML='<p style="margin:0;color:var(--muted)">Aucun élève pour l\'instant. Crée un code plus bas.</p>'}
+  else{
+    $("list").innerHTML='<div class="kids">'+ELEVES.map(function(e,i){
+      var n=Object.keys(e.done||{}).length,ok=CAHIERS.some(function(c){return c.cahier===e.cahier});
+      return '<div class="kid" data-i="'+i+'"><div class="h"><span class="nm">'+esc(e.label||e.name||"Sans prénom")+'</span><span class="cd">'+esc(show(e.code))+'</span></div>'
+       +'<div class="meta">'+esc(titre(e.cahier))+(ok?"":" <b style=\"color:var(--ko)\">(cahier pas en ligne)</b>")+' · '+n+' activité'+(n>1?"s":"")+' finie'+(n>1?"s":"")+(e.updated_at?' · dernier travail le '+esc(when(e.updated_at)):' · pas encore commencé')+'</div>'
+       +'<div class="acts"><button class="sm" data-a="open">Ouvrir le cahier</button><label class="fbtn alt sm" style="cursor:pointer">Importer une sauvegarde<input type="file" accept=".json,application/json" data-a="imp" hidden></label><button class="alt sm" data-a="edit">Modifier</button><button class="alt sm" data-a="del">Supprimer</button></div>'
+       +'<div class="zone"></div></div>'}).join("")+'</div>';
+  }
+}
+
+$("lf").addEventListener("submit",function(e){e.preventDefault();var p=$("pwd").value;if(!p)return;pwd=p;say($("lmsg"),"Vérification…");
+  load().then(function(ok){if(ok){try{sessionStorage.setItem(SK,pwd)}catch(e){}say($("lmsg"),"")}}).catch(function(err){pwd=null;say($("lmsg"),/Trop/.test(err.message)?err.message:"Impossible de joindre le serveur ("+err.message+").","ko")})});
+$("out").onclick=function(){leave("")};
+$("refresh").onclick=function(){$("list").innerHTML='<span class="spin"></span>Chargement…';load().catch(function(err){$("list").textContent="Erreur : "+err.message})};
+
+$("mk").onclick=function(){var lab=$("lab").value.trim(),c=$("cah").value;
+  if(!lab){say($("nmsg"),"Écris le prénom de l'élève.","ko");return}
+  if(!c){say($("nmsg"),"Dépose d'abord un cahier (plus bas).","ko");return}
+  $("mk").disabled=true;say($("nmsg"),"Création…");
+  rpc("cahier_creer_code",{p_mdp:pwd,p_label:lab,p_cahier:c}).then(function(code){
+    if(code===null){leave("Mot de passe incorrect.");return}
+    $("nmsg").className="msg";$("nmsg").innerHTML='<div class="newcode">Code de '+esc(lab)+'<b>'+esc(show(code))+'</b>À taper sur <i>cahier-d-activites-uee.github.io</i></div>';
+    $("lab").value="";return load()}).catch(function(err){say($("nmsg"),"Erreur : "+err.message,"ko")}).then(function(){$("mk").disabled=false})};
+
+/* --- actions sur un élève --- */
+$("list").addEventListener("click",function(ev){
+  var b=ev.target.closest("[data-a]");if(!b||b.tagName==="INPUT")return;var box=b.closest(".kid"),e=ELEVES[+box.dataset.i],zone=box.querySelector(".zone");
+  var a=b.dataset.a;
+  if(a==="open"){b.disabled=true;b.innerHTML='<span class="spin"></span>Ouverture…';
+    rpc("cahier_voir",{p_mdp:pwd,p_code:e.code,p_cahier:e.cahier}).then(function(r){
+      if(r===null){leave("Mot de passe incorrect.");return}
+      if(!r.html){zone.innerHTML='<p class="msg ko">Ce cahier n\'est pas en ligne : dépose-le d\'abord.</p>';b.disabled=false;b.textContent="Ouvrir le cahier";return}
+      window.__BOOT={mode:"adulte",code:r.code,label:r.label||e.label||"",cahier:r.cahier,data:r.data||null,adulte:r.adulte||null,updated_at:r.updated_at||null,mdp:pwd,supa:SUPA};
+      var html=r.html;r.html=null;window.scrollTo(0,0);document.open();document.write(html);document.close();
+    }).catch(function(err){b.disabled=false;b.textContent="Ouvrir le cahier";zone.innerHTML='<p class="msg ko">Erreur : '+esc(err.message)+'</p>'});
+  }
+  if(a==="edit"){
+    zone.innerHTML='<div class="row2"><div><label class="f">Prénom</label><input class="el" maxlength="60" value="'+esc(e.label||"")+'"></div><div><label class="f">Cahier</label><select class="ec">'+cahOptions(e.cahier)+(CAHIERS.some(function(c){return c.cahier===e.cahier})?"":'<option value="'+esc(e.cahier)+'" selected>'+esc(e.cahier)+'</option>')+'</select></div></div>'
+      +'<div class="acts"><button class="sm" data-a="save">Enregistrer</button><button class="alt sm" data-a="cancel">Annuler</button></div><p class="msg">Changer de cahier garde le même code. Le travail de l\'ancien cahier reste enregistré : il revient si tu remets l\'ancien cahier.</p>';
+  }
+  if(a==="cancel")zone.innerHTML="";
+  if(a==="save"){var nl=zone.querySelector(".el").value.trim(),nc=zone.querySelector(".ec").value;b.disabled=true;
+    rpc("cahier_modifier",{p_mdp:pwd,p_code:e.code,p_cahier:nc,p_label:nl}).then(function(r){if(r===null){leave("Mot de passe incorrect.");return}return load()})
+     .catch(function(err){b.disabled=false;zone.insertAdjacentHTML("beforeend",'<p class="msg ko">Erreur : '+esc(err.message)+'</p>')})}
+  if(a==="del"){zone.innerHTML='<p class="msg ko" style="margin-top:0">Supprimer le code '+esc(show(e.code))+' et tout le travail de '+esc(e.label||"cet élève")+' ? C\'est définitif.</p><div class="acts"><button class="danger sm" data-a="delok">Oui, supprimer</button><button class="alt sm" data-a="cancel">Annuler</button></div>'}
+  if(a==="delok"){b.disabled=true;rpc("cahier_supprimer_code",{p_mdp:pwd,p_code:e.code}).then(function(r){if(r===null){leave("Mot de passe incorrect.");return}return load()}).catch(function(err){b.disabled=false;zone.insertAdjacentHTML("beforeend",'<p class="msg ko">Erreur : '+esc(err.message)+'</p>')})}
+  if(a==="impok"){var d=box._imp;if(!d)return;b.disabled=true;zone.querySelector(".msg")&&say(zone.querySelector(".msg"),"Envoi…");
+    rpc("cahier_enregistrer",{p_cahier:e.cahier,p_code:e.code,p_data:d}).then(function(){return load()}).then(function(){
+      var z=document.querySelectorAll(".kid")[+box.dataset.i];if(z)z.querySelector(".zone").innerHTML='<p class="msg ok">✓ Sauvegarde importée : '+esc(e.label||"l\'élève")+' reprendra son travail là où il s\'était arrêté.</p>'})
+     .catch(function(err){b.disabled=false;zone.insertAdjacentHTML("beforeend",'<p class="msg ko">Erreur : '+esc(err.message)+'</p>')})}
+});
+$("list").addEventListener("change",function(ev){
+  var inp=ev.target;if(!inp.matches('input[data-a="imp"]'))return;var box=inp.closest(".kid"),e=ELEVES[+box.dataset.i],zone=box.querySelector(".zone"),file=inp.files&&inp.files[0];inp.value="";if(!file)return;
+  var rd=new FileReader();rd.onload=function(){var x=null;try{x=JSON.parse(rd.result)}catch(err){}
+    if(!x||!x.app||!x.done||!x.ans){zone.innerHTML='<p class="msg ko">Ce fichier n\'est pas une sauvegarde de cahier.</p>';return}
+    if(x.app!==e.cahier){zone.innerHTML='<p class="msg ko">Cette sauvegarde vient du cahier « '+esc(x.app)+' », mais '+esc(e.label||"cet élève")+' a le cahier « '+esc(e.cahier)+' ». Vérifie le fichier ou change le cahier de l\'élève avec « Modifier ».</p>';return}
+    var d={name:x.name||"",done:x.done,ans:x.ans},ex=x.extra||{};["fun","pending","earned","scores","seen"].forEach(function(k){if(ex[k]!==undefined&&ex[k]!==null)d[k]=ex[k]});
+    box._imp=d;var n=Object.keys(x.done).length,cur=Object.keys(e.done||{}).length;
+    zone.innerHTML='<p class="msg" style="margin-top:0">Sauvegarde de <b>'+esc(x.name||"(sans prénom)")+'</b>'+(x.exported?' du '+esc(when(x.exported)):"")+' : '+n+' activité'+(n>1?"s":"")+' finie'+(n>1?"s":"")+'.'
+      +(e.updated_at?'<br><b>Attention :</b> elle remplace le travail en ligne actuel ('+cur+' finie'+(cur>1?"s":"")+'). Demande à l\'élève de fermer son cahier avant.':'')+'</p><div class="acts"><button class="sm" data-a="impok">Importer</button><button class="alt sm" data-a="cancel">Annuler</button></div>';
+  };rd.readAsText(file);
+});
+
+/* --- cahiers --- */
+$("cahs").addEventListener("click",function(ev){var b=ev.target.closest("[data-ret]");if(!b)return;var id=b.dataset.ret;
+  if(!b.dataset.arm){b.dataset.arm=1;b.className="danger sm";b.textContent="Sûr ? Retirer";setTimeout(function(){if(b.isConnected){delete b.dataset.arm;b.className="alt sm";b.textContent="Retirer"}},4000);return}
+  b.disabled=true;rpc("cahier_retirer",{p_mdp:pwd,p_cahier:id}).then(function(r){if(r===null){leave("Mot de passe incorrect.");return}say($("umsg"),"Cahier retiré. Le travail des élèves reste enregistré.","ok");return load()}).catch(function(err){say($("umsg"),"Erreur : "+err.message,"ko")})});
+function readText(f){return new Promise(function(ok,ko){var r=new FileReader();r.onload=function(){ok(r.result)};r.onerror=function(){ko(r.error)};r.readAsText(f)})}
+$("up").addEventListener("change",function(){var files=[].slice.call(this.files||[]);this.value="";if(!files.length)return;var out=[],um=$("umsg");um.className="msg";
+  var step=function(i){if(i>=files.length){um.innerHTML=out.join("<br>");return load()}
+    var f=files[i];um.innerHTML=out.concat('<span class="spin"></span>Envoi de '+esc(f.name)+' ('+(i+1)+'/'+files.length+')…').join("<br>");
+    return readText(f).then(function(h){
+      var m=h.match(/const STKEY="([a-z0-9-]{3,60})"/);
+      if(!m){out.push('<span style="color:var(--ko)">✗ '+esc(f.name)+' : ce n\'est pas un cahier d\'activités.</span>');return}
+      if(h.indexOf("const BOOT=window.__BOOT")<0){out.push('<span style="color:var(--ko)">✗ '+esc(f.name)+' : c\'est la version hors ligne. Dépose la version en ligne.</span>');return}
+      var t=h.match(/<meta name="cahier-titre" content="([^"]*)">/),ti=t?t[1].replace(/&#39;/g,"'").replace(/&amp;/g,"&"):m[1];
+      return rpc("cahier_publier",{p_mdp:pwd,p_cahier:m[1],p_titre:ti,p_html:h}).then(function(r){
+        if(r===null){leave("Mot de passe incorrect.");throw new Error("stop")}
+        out.push('<span style="color:var(--ok)">✓ '+esc(ti)+' est en ligne.</span>')})
+       .catch(function(err){if(err.message==="stop")throw err;out.push('<span style="color:var(--ko)">✗ '+esc(f.name)+' : '+esc(err.status===413?"fichier trop gros pour le serveur":err.message)+'</span>')});
+    }).then(function(){return step(i+1)})};
+  step(0).catch(function(){})});
+
+if(pwd){say($("lmsg"),"Ouverture…");load().catch(function(err){say($("lmsg"),"Impossible de joindre le serveur ("+err.message+").","ko")})}
+window.addEventListener("pageshow",function(e){if(e.persisted)location.reload()});
+})();
 </script>
 </body>
 </html>

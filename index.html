@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f3eff7">
 <title>Cahier d'activités</title>
 <style>
 :root{--ink:#1d1a24;--muted:#6c6677;--line:#d9d4e0;--page:#f3eff7;--paper:#fff;--purple:#6b0f5e;--ok:#1f9d55;--ko:#d9432f}
@@ -11,48 +12,55 @@
 *{box-sizing:border-box}
 html,body{margin:0}
 body{min-height:100vh;min-height:100dvh;background:var(--page);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Verdana,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:max(24px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom))}
-h1{margin:0;color:var(--purple);font-size:clamp(32px,9vw,52px);letter-spacing:.04em;text-align:center;line-height:1.1}
-.sub{margin:8px 0 28px;color:var(--muted);text-align:center;letter-spacing:.1em}
+h1{margin:0 0 28px;color:var(--purple);font-size:clamp(32px,9vw,52px);letter-spacing:.04em;text-align:center;line-height:1.1}
 form{width:100%;max-width:420px;background:var(--paper);border-radius:22px;padding:26px 20px;box-shadow:0 10px 30px rgba(40,10,60,.12);text-align:center}
-label{display:block;font-size:18px;margin-bottom:14px}
+label{display:block;font-size:22px;font-weight:700;margin-bottom:14px}
 input{width:100%;font-size:28px;text-align:center;text-transform:uppercase;letter-spacing:.12em;padding:12px;border:2px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink)}
 input:focus{outline:none;border-color:var(--purple)}
 input::placeholder{color:var(--line);text-transform:none;letter-spacing:.04em;font-size:22px}
-button{margin-top:16px;width:100%;font-size:20px;font-weight:700;padding:14px;border:0;border-radius:14px;background:var(--purple);color:#fff;cursor:pointer}
+button{margin-top:16px;width:100%;font-size:22px;font-weight:700;padding:14px;border:0;border-radius:14px;background:var(--purple);color:#fff;cursor:pointer}
 button:disabled{opacity:.6}
-.msg{min-height:1.5em;margin:16px 0 0;font-size:16px}
+.msg{min-height:1.5em;margin:16px 0 0;font-size:17px;line-height:1.35}
 .msg.ok{color:var(--ok)}.msg.ko{color:var(--ko)}
-.test{margin-top:22px;font-size:13px;color:var(--muted);text-align:center}
+.spin{display:inline-block;width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--purple);border-radius:50%;animation:s 1s linear infinite;vertical-align:-3px;margin-right:8px}
+@keyframes s{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 <h1>Cahier d'activités</h1>
-<p class="sub">Page de test</p>
 <form id="f" autocomplete="off">
   <label for="code">Écris ton code</label>
-  <input id="code" inputmode="text" autocapitalize="characters" spellcheck="false" placeholder="ton code" aria-label="Ton code">
+  <input id="code" inputmode="text" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="ton code" aria-label="Ton code">
   <button id="go" type="submit">Entrer</button>
   <p class="msg" id="msg" role="status"></p>
 </form>
-<p class="test">Version de test : la connexion à la base est vérifiée, les cahiers arriveront ensuite.</p>
 <script>
-const SUPA={url:"https://jfmgsiuiynrklxydtcqb.supabase.co",key:"sb_publishable_X7PoFloBBAlIdHNnY09RXQ_dRRaZjES"};
-async function rpc(fn,args){
-  const r=await fetch(SUPA.url+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:SUPA.key,"Content-Type":"application/json"},body:JSON.stringify(args)});
-  const t=await r.text();let j=null;try{j=t?JSON.parse(t):null}catch(e){}
-  if(!r.ok){const e=new Error((j&&(j.message||j.hint))||("Erreur "+r.status));e.status=r.status;throw e}
-  return j}
-const norm=v=>(v||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toUpperCase().replace(/[^A-Z0-9]/g,"");
-const f=document.getElementById("f"),inp=document.getElementById("code"),msg=document.getElementById("msg"),btn=document.getElementById("go");
-f.addEventListener("submit",async e=>{e.preventDefault();const c=norm(inp.value);
-  if(c.length<4){msg.className="msg ko";msg.textContent="Écris ton code en entier.";return}
-  btn.disabled=true;msg.className="msg";msg.textContent="Vérification…";
-  try{const r=await rpc("cahier_ouvrir",{p_code:c});
-    if(!r){msg.className="msg ko";msg.textContent="Ce code n'existe pas. Vérifie-le ou demande-le à ton enseignant."}
-    else if(!r.html){msg.className="msg ok";msg.textContent="Code reconnu ✓ (cahier « "+r.cahier+" »). Le cahier n'est pas encore en ligne."}
-    else{msg.className="msg ok";msg.textContent="Code reconnu ✓ Le cahier « "+r.cahier+" » est bien en ligne."}}
-  catch(err){msg.className="msg ko";msg.textContent=/Trop/.test(err.message)?err.message:"Impossible de joindre le serveur ("+err.message+")."}
-  finally{btn.disabled=false}});
+(function(){
+"use strict";
+var SUPA={url:"https://jfmgsiuiynrklxydtcqb.supabase.co",key:"sb_publishable_X7PoFloBBAlIdHNnY09RXQ_dRRaZjES"};
+function rpc(fn,args){
+  return fetch(SUPA.url+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:SUPA.key,"Content-Type":"application/json"},body:JSON.stringify(args)})
+   .then(function(r){return r.text().then(function(t){var j=null;try{j=t?JSON.parse(t):null}catch(e){}
+     if(!r.ok){var e=new Error((j&&(j.message||j.hint))||("erreur "+r.status));e.status=r.status;throw e}return j})})}
+function norm(v){return (v||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toUpperCase().replace(/[^A-Z0-9]/g,"")}
+var f=document.getElementById("f"),inp=document.getElementById("code"),msg=document.getElementById("msg"),btn=document.getElementById("go");
+function say(t,c){msg.className="msg "+(c||"");msg.textContent=t}
+f.addEventListener("submit",function(e){e.preventDefault();var c=norm(inp.value);
+  if(c.length<4){say("Écris ton code en entier.","ko");return}
+  btn.disabled=true;msg.className="msg";msg.innerHTML='<span class="spin"></span>Ouverture de ton cahier…';
+  rpc("cahier_ouvrir",{p_code:c}).then(function(r){
+    if(!r){say("Ce code n'existe pas. Vérifie-le ou demande-le à ton enseignant.","ko");btn.disabled=false;inp.focus();return}
+    if(!r.html){say("Ton cahier n'est pas encore prêt. Demande à ton enseignant.","ko");btn.disabled=false;return}
+    inp.value="";
+    window.__BOOT={mode:"eleve",code:r.code,cahier:r.cahier,data:r.data||null,adulte:r.adulte||null,updated_at:r.updated_at||null,supa:SUPA};
+    var html=r.html;r.html=null;
+    window.scrollTo(0,0);
+    document.open();document.write(html);document.close();
+  }).catch(function(err){btn.disabled=false;
+    say(/Trop/.test(err.message)?err.message:(navigator.onLine===false?"Pas de connexion internet. Réessaie quand tu es connecté.":"Le serveur ne répond pas. Réessaie dans un instant."),"ko")});
+});
+window.addEventListener("pageshow",function(e){if(e.persisted)location.reload()});
+})();
 </script>
 </body>
 </html>
